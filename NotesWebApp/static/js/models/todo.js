@@ -1,6 +1,7 @@
 Todos.Todo = DS.Model.extend({
     title: DS.attr('string'),
-    isCompleted: DS.attr('boolean')
+    isCompleted: DS.attr('boolean'),
+    isChecklist: DS.attr('boolean')
 });
 
 Todos.Note = DS.Model.extend({
@@ -10,18 +11,15 @@ Todos.Note = DS.Model.extend({
 Todos.Todo.FIXTURES = [
 {
   id: 1,
-  title: 'First Todo note',
-  isCompleted: true 
+  title: 'First Todo Checklist',
+  isCompleted: true,
+  isChecklist: true
 },
 {
   id: 2,
-  title: '...',
-  isCompleted: false
-},
-{
-  id: 3,
-  title: 'Last note',
-  isCompleted: false
+  title: 'Regular note',
+  isCompleted: false,
+  isChecklist: false
 }
 ];
 
