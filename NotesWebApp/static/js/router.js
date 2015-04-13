@@ -1,6 +1,7 @@
 Todos.Router.map(function() {
   this.resource('todos', { path: '/' }, function() {
     // additional child routes
+    this.route('checklist');
     this.route('active');
     this.route('completed');
   });
@@ -18,6 +19,12 @@ Todos.TodosIndexRoute = Ember.Route.extend({
   }
 });
 
+Todos.TodosChecklistRoute = Ember.Route.extend({
+  model: function() {
+    return this.modelFor('todos');
+  }
+});
+
 Todos.TodosActiveRoute = Ember.Route.extend({
   model: function(){
     return this.store.filter('todo', function(todo) {
@@ -25,7 +32,7 @@ Todos.TodosActiveRoute = Ember.Route.extend({
     });
   },
   renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
+    this.render('todos/checklist', {controller: controller});
   }
 });
 
@@ -36,6 +43,6 @@ Todos.TodosCompletedRoute = Ember.Route.extend({
     });
   },
   renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
+    this.render('todos/checklist', {controller: controller});
   }
 });

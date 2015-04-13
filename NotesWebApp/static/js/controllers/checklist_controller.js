@@ -1,4 +1,4 @@
-Todos.TodosController = Ember.ArrayController.extend({
+Todos.ChecklistController = Ember.ArrayController.extend({
   actions: {
     clearCompleted: function() {
       var completed = this.filterBy('isCompleted', true);
@@ -21,23 +21,8 @@ Todos.TodosController = Ember.ArrayController.extend({
 
       // Save the new model
       todo.save();
-    },
-
-    setTodoType: function() {
-        console.log('setTodoType');
     }
   },
-
-  checklistTypeChecked: function(key, value) {
-    if(value === undefined) {
-      console.log('checklistTypeChecked first');
-      return true;
-    }
-    else {
-      console.log('checklistTypeChecked every other time');
-      return value;
-    }
-  }.property('checklistTypeChecked'),
 
   remaining: function() {
     return this.filterBy('isCompleted', false).get('length');
@@ -65,5 +50,5 @@ Todos.TodosController = Ember.ArrayController.extend({
       this.invoke('save');
       return value;
     }
-  }.property('@each.isCompleted')
+  }.property('@each.isCompleted') 
 });
