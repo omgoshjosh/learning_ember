@@ -30,11 +30,9 @@ Todos.TodosController = Ember.ArrayController.extend({
 
   checklistTypeChecked: function(key, value) {
     if(value === undefined) {
-      console.log('checklistTypeChecked first');
-      return true;
+      return false;
     }
     else {
-      console.log('checklistTypeChecked every other time');
       return value;
     }
   }.property('checklistTypeChecked'),
@@ -58,9 +56,11 @@ Todos.TodosController = Ember.ArrayController.extend({
 
   allAreDone: function(key, value) {
     if(value === undefined) {
+        console.log('value = UNDEFINED');
       return !!this.get('length') && this.isEvery('isCompleted', true);
     }
     else {
+        console.log('value = '+value);
       this.setEach('isCompleted', value);
       this.invoke('save');
       return value;
