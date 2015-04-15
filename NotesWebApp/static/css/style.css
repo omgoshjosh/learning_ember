@@ -20,6 +20,33 @@ button {
   appearance: none;
 }
 
+.new-note-wrapper {
+  padding: 10px;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  font-size: 14px;
+  width: 65%;
+}
+
+.back-btn {
+  font-size: 24px;
+  width: 15%;
+  vertical-align: top;
+  margin-top: 5px;
+  height: auto;
+}
+
+.done-btn {
+  font-size: 24px;
+  width: 17%;
+  vertical-align: top;
+  margin-top: 5px;
+  float: right;
+}
+
 .add-todo {
   display: block;
   background: #6c615c;
@@ -36,10 +63,6 @@ button {
   padding: 15px;
   margin-left: 45px;
   margin-right: 70px;
-/*
-  margin-top: 10px;
-  margin-bottom: 10px;
-*/
   line-height: 1.2;
 }
 
@@ -66,7 +89,7 @@ body {
   line-height: 1.4em;
   background: #eaeaea url('../images/bg.png');
   color: #4d4d4d;
-  width: 550px;
+  width: 100%;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
