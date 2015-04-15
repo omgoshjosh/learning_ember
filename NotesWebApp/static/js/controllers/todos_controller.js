@@ -30,7 +30,7 @@ Todos.TodosController = Ember.ArrayController.extend({
 
   checklistTypeChecked: function(key, value) {
     if(value === undefined) {
-      return false;
+      return true;
     }
     else {
       return value;

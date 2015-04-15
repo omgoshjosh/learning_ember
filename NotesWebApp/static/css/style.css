@@ -28,19 +28,18 @@ button {
   background-image: -ms-linear-gradient(top, #6c615c, #a69999);
   background-image: -o-linear-gradient(top, #6c615c, #a69999);
   background-image: linear-gradient(to bottom, #6c615c, #a69999);
-  -webkit-border-radius: 5;
-  -moz-border-radius: 5;
-  border-radius: 5px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 24px;
   text-align:center;
   text-decoration: none;
   word-break: break-word;
-  padding: 5px 15px;
+  padding: 15px;
   margin-left: 45px;
   margin-right: 70px;
+/*
   margin-top: 10px;
   margin-bottom: 10px;
+*/
   line-height: 1.2;
 }
 
@@ -52,7 +51,7 @@ button {
   bottom: 0;
   width: 40px;
   height: 40px;
-  margin-top: 25px;
+  margin-top: 10px;
   font-size: 22px;
   color: #a88a8a;
   -webkit-transition: all 0.2s;
@@ -74,6 +73,10 @@ body {
   -ms-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
   font-smoothing: antialiased;
+}
+
+header {
+  font: 24px;
 }
 
 #todoapp {
@@ -114,32 +117,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-#header {
-  padding-top: 15px;
-  border-radius: inherit;
-}
-
-#header:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 15px;
-  z-index: 2;
-  border-bottom: 1px solid #6c615c;
-  background: #8d7d77;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(132, 110, 100, 0.8)),to(rgba(101, 84, 76, 0.8)));
-  background: -webkit-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: -moz-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: -o-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: -ms-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#9d8b83', EndColorStr='#847670');
-  border-top-left-radius: 1px;
-  border-top-right-radius: 1px;
-}
-
 #new-todo,
 .edit {
   position: relative;
@@ -175,6 +152,12 @@ body {
 }
 
 #main {
+  position: relative;
+  z-index: 2;
+  border-top: 1px dotted #adadad;
+}
+
+#main-index {
   position: relative;
   z-index: 2;
   border-top: 1px dotted #adadad;
@@ -236,7 +219,17 @@ label[for='toggle-all'] {
   display: none;
 }
 
-#todo-list li .toggle {
+header#header h2.head-wrap {
+  display: block;
+  font-size: 24px;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: normal;
+}
+
+#todo-list li .toggle, header#header h2 .toggle {
   text-align: center;
   width: 40px;
   /* auto, since non-WebKit browsers doesn't support input styling */
@@ -253,7 +246,7 @@ label[for='toggle-all'] {
   appearance: none;
 }
 
-#todo-list li .toggle:after/*, */ {
+#todo-list li .toggle:after, header#header h2 .toggle:after {
   content: '✔';
   line-height: 43px; /* 40 + a couple of pixels visual adjustment */
   font-size: 20px;
@@ -261,11 +254,16 @@ label[for='toggle-all'] {
   text-shadow: 0 -1px 0 #bfbfbf;
 }
 
-#todo-list li .toggle:checked:after/*, */ {
+#todo-list li .toggle.isChecklist:after, header#header h2 .toggle:checked:after {
   color: #85ada7;
   text-shadow: 0 1px 0 #669991;
   bottom: 1px;
   position: relative;
+}
+
+header#header h2 .toggle {
+  height: 40px;
+  margin: 10px 0px;
 }
 
 #todo-list li label {
