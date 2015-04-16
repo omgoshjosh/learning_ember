@@ -8,7 +8,14 @@ Todos.TodosController = Ember.ArrayController.extend({
     createTodo: function() {
       // Get the todo title set by the "New Todo" text field
       var title = this.get('newTitle');
+      var noteText = this.get('newNote');
       if (!title.trim()) { return; }
+
+      // Create the new Note model
+      var note = this.store.createRecord('note', {
+        msg: noteText,
+        isCompleted: false
+      });
 
       // Create the new Todo model
       var todo = this.store.createRecord('todo', {
@@ -16,11 +23,19 @@ Todos.TodosController = Ember.ArrayController.extend({
         isCompleted: false
       });
 
-      // Clear the "New Todo" text field
-      this.set('newTitle', '');
+      // Build the relationship of note to todo
+      note.set('todo', todo);
 
-      // Save the new model
+      // Clear the Todo fields
+      this.set('newTitle', '');
+      this.set('newNote', '');
+
+      // Save the new models
       todo.save();
+      note.save();
+
+      // Send the user back to Todos index
+      this.transitionToRoute('todos.index');
     },
 
     setTodoType: function() {

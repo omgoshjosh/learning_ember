@@ -35,13 +35,14 @@
     <header id="header">
         <h1>todos</h1>
     </header>
-    <section id="main-index">
       <div class="new-note-wrapper">
-        <button class="back-btn">&#x25c0;</button>
-        {{textarea placeholder="Write a note..." autofocus=""}}
-        <button class="done-btn">Done</button>
+        {{#link-to "todos.index" classNames="back-btn"}}&#x25c0;{{/link-to}}
+        <div class="note-wrapper">
+          {{input placeholder="Title" autofocus="" classNames="todo-title" value=newTitle}}
+          {{exp-text-area rows=1 placeholder="Write a note..." value=newNote}}
+        </div>
+        <button {{action "createTodo"}} class="done-btn">Done</button>
       </div>
-    </section>
   </script>
   <script type="text/x-handlebars" data-template-name="todos/checklist">
     <section id="main">
@@ -101,5 +102,6 @@
   <script src="static/js/controllers/todos_controller.js"></script>
   <script src="static/js/controllers/todo_controller.js"></script>
   <script src="static/js/views/edit_todo_view.js"></script>
+  <script src="static/js/views/add_todo_view.js"></script>
 </body>
 </html>

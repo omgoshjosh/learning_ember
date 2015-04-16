@@ -24,6 +24,7 @@ Todos.TodosIndexRoute = Ember.Route.extend({
 });
 
 Todos.TodosNewRoute = Ember.Route.extend({
+  controllerName: 'todos',
   model: function() {
     return this.store.find('todo');
   }
