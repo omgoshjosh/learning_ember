@@ -28,3 +28,7 @@ proguard/
 
 # lock files
 *~
+
+# php files?
+vendor/
+.env
