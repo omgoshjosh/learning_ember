@@ -11,13 +11,13 @@
     <header id="header">
         <h1>todos</h1>
         <h2 class="head-wrap">
-          {{input type="checkbox" checked=checklistTypeChecked class="toggle"}}
+          {{input disabled="disabled" type="checkbox" checked=checklistTypeChecked class="toggle"}}
           {{#if checklistTypeChecked}}
             {{#link-to "todos.new" classNames="add-todo"}}+ Add new Todo Checklist {{/link-to}}
           {{else}}
             {{#link-to "todos.new" classNames="add-todo"}}+ Add new Todo Note {{/link-to}}
           {{/if}}
-          {{input type="checkbox" id="toggle-todo-type" checked=checklistTypeChecked}}
+          {{input disabled="disabled" type="checkbox" id="toggle-todo-type" checked=checklistTypeChecked}}
         </h2>
     </header>
     <section id="main-index">
@@ -25,7 +25,7 @@
         {{#each todo in model itemController="todo"}}
           <li>
             <div {{bind-attr class=":toggle todo.isChecklist:isChecklist"}}></div>
-            <label {{action "editTodo" on="click"}}>{{todo.title}}</label><button {{action "removeTodo"}} class="destroy"></button>
+            {{#link-to 'todo' todo}}{{todo.title}}{{/link-to}}<button {{action "removeTodo"}} class="destroy"></button>
           </li>
         {{/each}}
       </ul>
@@ -44,6 +44,23 @@
         <button {{action "createTodo"}} class="done-btn">Done</button>
       </div>
   </script>
+  <script type="text/x-handlebars" data-template-name="todo">
+    <section id="todoapp">
+    <header id="header">
+        <h1>todos</h1>
+    </header>
+      <div class="new-note-wrapper">
+        {{#link-to "todos.index" classNames="back-btn"}}&#x25c0;{{/link-to}}
+        <div class="note-wrapper">
+          {{input placeholder="Title" classNames="todo-title" value=title}}
+          {{#each note in notes}}
+            {{exp-text-area autofocus="" placeholder="Write a note..." value=note.msg}}
+          {{/each}}
+        </div>
+        <button {{action "saveTodo"}} class="done-btn">Done</button>
+      </div>
+    </section>
+  </script>
   <script type="text/x-handlebars" data-template-name="todos/checklist">
     <section id="main">
       <ul id="todo-list">
@@ -53,7 +70,7 @@
               {{edit-todo class="edit" value=todo.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
             {{else}}
             {{input type="checkbox" checked=todo.isCompleted class="toggle"}}
-            <label {{action "editTodo" on="doubleClick"}}>{{todo.title}}</label><button {{action "removeTodo"}} class="destroy"></button>
+            <label {{action "editNote" on="doubleClick"}}>{{todo.title}}</label><button {{action "removeTodo"}} class="destroy"></button>
             {{/if}}
           </li>
         {{/each}}

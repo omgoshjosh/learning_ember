@@ -2,7 +2,8 @@ Todos.ExpTextArea = Ember.TextArea.extend({
   didInsertElement: function(){
     opts = {
       animate: false,
-      cloneClass: 'faketextarea'
+      cloneClass: 'faketextarea',
+      onInitialize: true
     }
     $('#'+this.get('elementId')).autogrow(opts);
   },

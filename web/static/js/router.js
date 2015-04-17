@@ -2,13 +2,13 @@ Todos.Router.map(function() {
   this.resource('todos', { path: '/' }, function() {
     // new todo route
     this.route('new');
+
     // checklist routes
     this.route('checklist');
     this.route('active');
     this.route('completed');
-    // regular note route
-    this.route('note');
   });
+  this.resource('todo', { path: '/todo/:todo_id' });
 });
 
 Todos.TodosRoute = Ember.Route.extend({
@@ -20,6 +20,12 @@ Todos.TodosRoute = Ember.Route.extend({
 Todos.TodosIndexRoute = Ember.Route.extend({
   model: function() {
     return this.modelFor('todos');
+  }
+});
+
+Todos.TodoRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.store.find('todo', params.todo_id);
   }
 });
 

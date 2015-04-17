@@ -1,6 +1,6 @@
 Todos.TodoController = Ember.ObjectController.extend({
   actions: {
-    editTodo: function() {
+    editNote: function() {
       this.set('isEditing', true);
     },
     acceptChanges: function() {
@@ -16,6 +16,12 @@ Todos.TodoController = Ember.ObjectController.extend({
         var todo = this.get('model');
         todo.deleteRecord();
         todo.save();
+    },
+    saveTodo: function() {
+      this.get('model').save();
+
+      // Send the user back to Todos index
+      this.transitionToRoute('todos.index');
     }
   },
 

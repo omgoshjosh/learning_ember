@@ -1,6 +1,6 @@
 Todos.Todo = DS.Model.extend({
     title: DS.attr('string'),
-    notes: DS.hasMany('note'),
+    notes: DS.hasMany('note', {async: true}),
     isCompleted: DS.attr('boolean'),
     isChecklist: DS.attr('boolean')
 });
