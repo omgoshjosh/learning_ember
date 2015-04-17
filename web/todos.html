@@ -36,7 +36,7 @@
         <h1>todos</h1>
     </header>
       <div class="new-note-wrapper">
-        {{#link-to "todos.index" classNames="back-btn"}}&#x25c0;{{/link-to}}
+        {{#link-to "todos.index" classNames="back-btn"}}<button {{action "clearNewTodoForm"}}>&#x25c0;</button>{{/link-to}}
         <div class="note-wrapper">
           {{input placeholder="Title" autofocus="" classNames="todo-title" value=newTitle}}
           {{exp-text-area rows=1 placeholder="Write a note..." value=newNote}}
@@ -50,7 +50,7 @@
         <h1>todos</h1>
     </header>
       <div class="new-note-wrapper">
-        {{#link-to "todos.index" classNames="back-btn"}}&#x25c0;{{/link-to}}
+        {{#link-to "todos.index" classNames="back-btn"}}<button {{action "resetTodoModel"}}>&#x25c0;</button>{{/link-to}}
         <div class="note-wrapper">
           {{input placeholder="Title" classNames="todo-title" value=title}}
           {{#each note in notes}}

@@ -38,6 +38,11 @@ Todos.TodosController = Ember.ArrayController.extend({
       this.transitionToRoute('todos.index');
     },
 
+    clearNewTodoForm: function() {
+      this.set('newTitle', '');
+      this.set('newNote', '');
+    },
+
     setTodoType: function() {
         console.log('setTodoType');
     }

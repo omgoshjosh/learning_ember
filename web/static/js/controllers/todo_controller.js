@@ -22,6 +22,9 @@ Todos.TodoController = Ember.ObjectController.extend({
 
       // Send the user back to Todos index
       this.transitionToRoute('todos.index');
+    },
+    resetTodoModel: function(){
+      this.get('model').rollback();
     }
   },
 
