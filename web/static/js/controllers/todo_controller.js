@@ -18,12 +18,14 @@ Todos.TodoController = Ember.ObjectController.extend({
         todo.save();
     },
     saveTodo: function() {
+      this.get('model').get('notes').get('content').get('content')[0].save();
       this.get('model').save();
 
       // Send the user back to Todos index
       this.transitionToRoute('todos.index');
     },
     resetTodoModel: function(){
+      this.get('model').get('notes').get('content').get('content')[0].rollback();
       this.get('model').rollback();
     }
   },
