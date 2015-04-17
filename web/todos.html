@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ember.js • TodoMVC</title>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <script type="text/x-handlebars" data-template-name="todos/index">
+    <header id="header">
+        <h1>todos</h1>
+        <h2 class="head-wrap">
+          {{input disabled="disabled" type="checkbox" checked=checklistTypeChecked class="toggle"}}
+          {{#if checklistTypeChecked}}
+            {{#link-to "todos.new" classNames="add-todo"}}+ Add new Todo Checklist {{/link-to}}
+          {{else}}
+            {{#link-to "todos.new" classNames="add-todo"}}+ Add new Todo Note {{/link-to}}
+          {{/if}}
+          {{input disabled="disabled" type="checkbox" id="toggle-todo-type" checked=checklistTypeChecked}}
+        </h2>
+    </header>
+    <section id="main-index">
+      <ul id="todo-list">
+        {{#each todo in model itemController="todo"}}
+          <li>
+            <div {{bind-attr class=":toggle todo.isChecklist:isChecklist"}}></div>
+            {{#link-to 'todo' todo}}{{todo.title}}{{/link-to}}<button {{action "removeTodo"}} class="destroy"></button>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  </script>
+  <script type="text/x-handlebars" data-template-name="todos/new">
+    <header id="header">
+        <h1>todos</h1>
+    </header>
+      <div class="new-note-wrapper">
+        {{#link-to "todos.index" classNames="back-btn"}}<button {{action "clearNewTodoForm"}}>&#x25c0;</button>{{/link-to}}
+        <div class="note-wrapper">
+          {{input placeholder="Title" autofocus="" classNames="todo-title" value=newTitle}}
+          {{exp-text-area rows=1 placeholder="Write a note..." value=newNote}}
+        </div>
+        <button {{action "createTodo"}} class="done-btn">Done</button>
+      </div>
+  </script>
+  <script type="text/x-handlebars" data-template-name="todo">
+    <section id="todoapp">
+    <header id="header">
+        <h1>todos</h1>
+    </header>
+      <div class="new-note-wrapper">
+        {{#link-to "todos.index" classNames="back-btn"}}<button {{action "resetTodoModel"}}>&#x25c0;</button>{{/link-to}}
+        <div class="note-wrapper">
+          {{input placeholder="Title" classNames="todo-title" value=title}}
+          {{#each note in notes}}
+            {{exp-text-area autofocus="" placeholder="Write a note..." value=note.msg}}
+          {{/each}}
+        </div>
+        <button {{action "saveTodo"}} class="done-btn">Done</button>
+      </div>
+    </section>
+  </script>
+  <script type="text/x-handlebars" data-template-name="todos/checklist">
+    <section id="main">
+      <ul id="todo-list">
+        {{#each todo in model itemController="todo"}}
+          <li {{bind-attr class="todo.isCompleted:completed todo.isEditing:editing"}}>
+            {{#if todo.isEditing}}
+              {{edit-todo class="edit" value=todo.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+            {{else}}
+            {{input type="checkbox" checked=todo.isCompleted class="toggle"}}
+            <label {{action "editNote" on="doubleClick"}}>{{todo.title}}</label><button {{action "removeTodo"}} class="destroy"></button>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    {{input type="checkbox" id="toggle-all" checked=allAreDone}}
+    </section>
+    <footer id="footer">
+      <span id="todo-count">
+        <strong>{{remaining}}</strong> {{inflection}} left</span>
+      <ul id="filters">
+        <li>
+          {{#link-to "todos.checklist" activeClass="selected"}}All{{/link-to}}
+        </li>
+        <li>
+          {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+        </li>
+        <li>
+          {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+        </li>
+      </ul>
+      {{#if hasCompleted}}
+        <button id="clear-completed" {{action "clearCompleted"}}>
+          Clear completed ({{completed}})
+        </button>
+      {{/if}}
+    </footer>
+    <footer id="info">
+      <p>Double-click to edit a todo</p>
+    </footer>
+  </script>
+  <script type="text/x-handlebars" data-template-name="todos">
+    <section id="todoapp">
+      {{outlet}}
+    </section>
+  </script>
+
+  <script src="static/js/libs/jquery-1.11.2.min.js"></script>
+  <script src="static/js/libs/autogrow.js"></script>
+  <script src="static/js/libs/handlebars-v1.3.0.js"></script>
+  <script src="static/js/libs/ember.js"></script>
+  <script src="static/js/libs/ember-data.js"></script>
+  <script src="static/js/libs/local_storage_adapter.js"></script>
+  <script src="static/js/application.js"></script>
+  <script src="static/js/router.js"></script>
+  <script src="static/js/models/todo.js"></script>
+  <script src="static/js/models/note.js"></script>
+  <script src="static/js/controllers/todos_controller.js"></script>
+  <script src="static/js/controllers/todo_controller.js"></script>
+  <script src="static/js/views/edit_todo_view.js"></script>
+  <script src="static/js/views/add_todo_view.js"></script>
+</body>
+</html>

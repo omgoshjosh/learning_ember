@@ -1,4 +1,4 @@
-Todos.TodosController = Ember.ArrayController.extend({
+Todos.ChecklistController = Ember.ArrayController.extend({
   actions: {
     clearCompleted: function() {
       var completed = this.filterBy('isCompleted', true);
@@ -50,5 +50,5 @@ Todos.TodosController = Ember.ArrayController.extend({
       this.invoke('save');
       return value;
     }
-  }.property('@each.isCompleted')
+  }.property('@each.isCompleted') 
 });

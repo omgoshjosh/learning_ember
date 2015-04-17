@@ -1,21 +1,16 @@
-Todos.TodoController = Ember.ObjectController.extend({
+Todos.NoteController = Ember.ObjectController.extend({
   actions: {
-    editTodo: function() {
+    editNote: function () {
       this.set('isEditing', true);
     },
-    acceptChanges: function() {
+    acceptChanges: function () {
       this.set('isEditing', false);
-
-      if (Ember.isEmpty(this.get('model.title'))) {
-          this.send('removeTodo');
-      } else {
-        this.get('model').save();
-      }
+      this.get('model').save();
     },
-    removeTodo: function () {
-        var todo = this.get('model');
-        todo.deleteRecord();
-        todo.save();
+    removeNote: function () {
+      var note = this.get('model');
+      note.deleteRecord();
+      note.save();
     }
   },
 
@@ -28,7 +23,7 @@ Todos.TodoController = Ember.ObjectController.extend({
       // property being used as a getter
       return model.get('isCompleted');
     } else {
-      // property being used as a setter
+      // property being used as  setter
       model.set('isCompleted', value);
       model.save();
       return value;
